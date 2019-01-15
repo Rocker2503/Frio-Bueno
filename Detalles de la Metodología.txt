@@ -1,0 +1,11 @@
+Caracteristicas principales de la Metodología:
+
+Metodología ágil
+Tecnología a utilizar: ASP.NET Core, Microsoft SQL Server
+
+Duración del Sprint: 2 semanas
+Entrevista con usuarios: Al menos 2 veces por semana
+Presentación a jefe: todas las semanas para presentar avances
+Retrospectiva: Viernes por medio
+
+
