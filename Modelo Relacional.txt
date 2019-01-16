@@ -1,0 +1,12 @@
+
+Cliente(Id [PK], Nombre, NumGuia, Fecha, Conductor, RutConductor, Transporte, Patente, PesoGuia)
+Carga(NumLote [PK], Producto, TipoProducto, UnidadSoportante, CantidadUS, Envase, KgNeto, idCliente[FK])
+DetalleCarga(FolioInterno [PK], NumLote [FK], Producto [FK], Envase [FK], KgEnvase, FolioExterno)
+
+ClienteDetalle(Id[PK], NumGuia[FK], FolioExterno[FK], FolioInterno[FK], Producto[FK], Envase[FK])
+
+Producto(Id[PK], NumGuia, FolioExterno, FolioInterno, Producto, Envase, Banda, Piso, Altura)
+OrdenDespacho(Id[PK], CantidadProductos)
+OrdenAlmacenado(IdOrden[FK], IdProducto[FK], NumGuia[FK], FolioExterno[FK], FolioInterno[FK])
+
+Despacho(Id[PK], idOrdenDespacho[FK], idCliente[FK], Nombre, NumGuia, Fecha)
