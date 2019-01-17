@@ -1,0 +1,11 @@
+C:\Users\Nicolas\Desktop\Frio-Bueno\FrioBueno\FrioBueno\bin\Debug\netcoreapp2.0\FrioBueno.deps.json
+C:\Users\Nicolas\Desktop\Frio-Bueno\FrioBueno\FrioBueno\bin\Debug\netcoreapp2.0\FrioBueno.runtimeconfig.json
+C:\Users\Nicolas\Desktop\Frio-Bueno\FrioBueno\FrioBueno\bin\Debug\netcoreapp2.0\FrioBueno.runtimeconfig.dev.json
+C:\Users\Nicolas\Desktop\Frio-Bueno\FrioBueno\FrioBueno\bin\Debug\netcoreapp2.0\FrioBueno.dll
+C:\Users\Nicolas\Desktop\Frio-Bueno\FrioBueno\FrioBueno\obj\Debug\netcoreapp2.0\FrioBueno.csprojResolveAssemblyReference.cache
+C:\Users\Nicolas\Desktop\Frio-Bueno\FrioBueno\FrioBueno\obj\Debug\netcoreapp2.0\FrioBueno.csproj.CoreCompileInputs.cache
+C:\Users\Nicolas\Desktop\Frio-Bueno\FrioBueno\FrioBueno\obj\Debug\netcoreapp2.0\FrioBueno.AssemblyInfoInputs.cache
+C:\Users\Nicolas\Desktop\Frio-Bueno\FrioBueno\FrioBueno\obj\Debug\netcoreapp2.0\FrioBueno.AssemblyInfo.cs
+C:\Users\Nicolas\Desktop\Frio-Bueno\FrioBueno\FrioBueno\bin\Debug\netcoreapp2.0\FrioBueno.pdb
+C:\Users\Nicolas\Desktop\Frio-Bueno\FrioBueno\FrioBueno\obj\Debug\netcoreapp2.0\FrioBueno.dll
+C:\Users\Nicolas\Desktop\Frio-Bueno\FrioBueno\FrioBueno\obj\Debug\netcoreapp2.0\FrioBueno.pdb

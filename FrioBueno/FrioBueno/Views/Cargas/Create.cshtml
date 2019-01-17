@@ -1,0 +1,65 @@
+﻿@model FrioBueno.Models.Carga
+
+@{
+    ViewData["Title"] = "Create";
+    var idCliente = ViewContext.RouteData.Values["Id"];
+
+}
+
+<h2>Create</h2>
+
+<h4>Carga</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Producto" class="control-label"></label>
+                <input asp-for="Producto" class="form-control" />
+                <span asp-validation-for="Producto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoProducto" class="control-label"></label>
+                <input asp-for="TipoProducto" class="form-control" />
+                <span asp-validation-for="TipoProducto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnidadSoportante" class="control-label"></label>
+                <input asp-for="UnidadSoportante" class="form-control" />
+                <span asp-validation-for="UnidadSoportante" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CantidadUS" class="control-label"></label>
+                <input asp-for="CantidadUS" class="form-control" />
+                <span asp-validation-for="CantidadUS" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Envase" class="control-label"></label>
+                <input asp-for="Envase" class="form-control" />
+                <span asp-validation-for="Envase" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KgNeto" class="control-label"></label>
+                <input asp-for="KgNeto" class="form-control" />
+                <span asp-validation-for="KgNeto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdCliente" class="control-label" ></label>
+                <input asp-for="IdCliente" value="@idCliente" class="form-control" readonly/>
+                <span asp-validation-for="IdCliente" class="text-danger"></span>
+            </div>
+            <div class="form-group">                
+                <input type="submit" value="Create" class="btn btn-default"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

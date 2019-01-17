@@ -7,8 +7,8 @@ namespace FrioBueno.Models
 {
     public class OrdenDespacho
     {
-        private int Id { get; set; }
-        private int CantidadProductos { get; set; }
+        public int Id { get; set; }
+        public int CantidadProductos { get; set; }
 
         public OrdenDespacho(int id, int cantidadProductos)
         {

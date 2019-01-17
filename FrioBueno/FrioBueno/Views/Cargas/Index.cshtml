@@ -1,0 +1,89 @@
+﻿@model IEnumerable<FrioBueno.Models.Carga>
+
+@{
+    ViewData["Title"] = "Index";
+    var idCliente = ViewContext.RouteData.Values["Id"];
+    int id = Convert.ToInt32(idCliente);
+}
+
+<h2>Index</h2>
+
+<p>
+    <!--<a asp-action="Create">Create New</a> -->
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Producto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoProducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnidadSoportante)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CantidadUS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Envase)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KgNeto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCliente)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item.IdCliente.Equals(id))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Producto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoProducto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UnidadSoportante)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CantidadUS)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Envase)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.KgNeto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdCliente)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@if (id == 0)
+{
+    <script> window.location.href='@Url.Action("Index", "Clientes")'; </script>
+}
