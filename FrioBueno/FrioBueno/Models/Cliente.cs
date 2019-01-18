@@ -8,6 +8,7 @@ namespace FrioBueno.Models
 {
     public class Cliente
     {
+        
         public int Id { get; set; }
         [Display(Name = "Cliente")]
         public string Nombre { get; set; }
@@ -23,10 +24,10 @@ namespace FrioBueno.Models
         [DataType(DataType.Date)]
         public DateTime Fecha { get; set; }
         [Display(Name = "Peso Guia")]
-        public float PesoGuia { get; set; }
+        public string PesoGuia { get; set; }
 
         public Cliente(int id, string nombre, int numGuia, string patente, string transporte, string conductor, string rutConductor,
-            DateTime fecha, float pesoGuia)
+            DateTime fecha, string pesoGuia)
         {
             this.Id = id;
             this.Nombre = nombre;

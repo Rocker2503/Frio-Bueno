@@ -17,5 +17,7 @@ namespace FrioBueno.Models
         public DbSet<FrioBueno.Models.Cliente> Cliente { get; set; }
 
         public DbSet<FrioBueno.Models.Carga> Carga { get; set; }
+
+        public DbSet<FrioBueno.Models.DetalleCarga> DetalleCarga { get; set; }
     }
 }

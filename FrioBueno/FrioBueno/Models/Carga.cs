@@ -17,11 +17,13 @@ namespace FrioBueno.Models
         public int CantidadUS { get; set; }
         public string Envase { get; set; }
         [Display(Name = "Kg Neto")]
-        public float KgNeto { get; set; }
+        public string KgNeto { get; set; }
+
+        [Display(Name = "Codigo Cliente")]
         public int IdCliente { get; set; }
 
         public Carga(int NumLote, string producto, string tipoProducto, string unidadSoporte, int cantidadUS, 
-            string envase, float kgNeto)
+            string envase, string kgNeto)
         {
             this.Id = NumLote;
             this.Producto = producto;

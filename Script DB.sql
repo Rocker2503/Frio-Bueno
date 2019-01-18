@@ -12,7 +12,7 @@ Create table Cliente(
     Conductor text not null,
     RutConductor text not null,   
 	Fecha date not null,
-	PesoGuia float(20) not null 
+	PesoGuia text not null 
 );
 
 Create table Carga(
@@ -22,17 +22,21 @@ Create table Carga(
     UnidadSoportante text not null,
     CantidadUS int not null,
     Envase text not null,
-    KgNeto float(20) not null,
+    KgNeto text not null,
     IdCliente int not null references Cliente(Id)
+	on update cascade
+	on delete cascade
 );
 
 CREATE table DetalleCarga(
     Id int not null primary key identity,
-    IdCarga int not null references Carga(Id),
+    IdCarga int not null references Carga(Id)
+	on update cascade
+	on delete cascade,
     Producto text not null, 
     Envase text not null,
-    KgEnvase float(20) not null,
-    FolioExterno int not null
+    KgEnvase text not null,
+    FolioExterno int not null     
 );
 
 Create table ClienteDetalle(

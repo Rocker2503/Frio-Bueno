@@ -9,44 +9,44 @@ using FrioBueno.Models;
 
 namespace FrioBueno.Controllers
 {
-    public class ClientesController : Controller
+    public class DetalleCargasController : Controller
     {
         private readonly FrioBuenoContext _context;
 
-        public ClientesController(FrioBuenoContext context)
+        public DetalleCargasController(FrioBuenoContext context)
         {
             _context = context;
         }
 
-        // GET: Clientes
+        // GET: DetalleCargas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Cliente.ToListAsync());
+            return View(await _context.DetalleCarga.ToListAsync());
         }
 
-        // GET: Clientes/Create
+        // GET: DetalleCargas/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Clientes/Create
+        // POST: DetalleCargas/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,NumGuia,Patente,Transporte,Conductor,RutConductor,Fecha,PesoGuia")] Cliente cliente)
+        public async Task<IActionResult> Create([Bind("IdCarga,Producto,Envase,KgEnvase,FolioExterno")] DetalleCarga detalleCarga)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(cliente);
+                _context.Add(detalleCarga);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(cliente);
+            return View(detalleCarga);
         }
 
-        // GET: Clientes/Edit/5
+        // GET: DetalleCargas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -54,22 +54,22 @@ namespace FrioBueno.Controllers
                 return NotFound();
             }
 
-            var cliente = await _context.Cliente.SingleOrDefaultAsync(m => m.Id == id);
-            if (cliente == null)
+            var detalleCarga = await _context.DetalleCarga.SingleOrDefaultAsync(m => m.Id == id);
+            if (detalleCarga == null)
             {
                 return NotFound();
             }
-            return View(cliente);
+            return View(detalleCarga);
         }
 
-        // POST: Clientes/Edit/5
+        // POST: DetalleCargas/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,NumGuia,Patente,Transporte,Conductor,RutConductor,Fecha,PesoGuia")] Cliente cliente)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,IdCarga,Producto,Envase,KgEnvase,FolioExterno")] DetalleCarga detalleCarga)
         {
-            if (id != cliente.Id)
+            if (id != detalleCarga.Id)
             {
                 return NotFound();
             }
@@ -78,12 +78,12 @@ namespace FrioBueno.Controllers
             {
                 try
                 {
-                    _context.Update(cliente);
+                    _context.Update(detalleCarga);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClienteExists(cliente.Id))
+                    if (!DetalleCargaExists(detalleCarga.Id))
                     {
                         return NotFound();
                     }
@@ -94,10 +94,10 @@ namespace FrioBueno.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(cliente);
+            return View(detalleCarga);
         }
 
-        // GET: Clientes/Delete/5
+        // GET: DetalleCargas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -105,30 +105,30 @@ namespace FrioBueno.Controllers
                 return NotFound();
             }
 
-            var cliente = await _context.Cliente
+            var detalleCarga = await _context.DetalleCarga
                 .SingleOrDefaultAsync(m => m.Id == id);
-            if (cliente == null)
+            if (detalleCarga == null)
             {
                 return NotFound();
             }
 
-            return View(cliente);
+            return View(detalleCarga);
         }
 
-        // POST: Clientes/Delete/5
+        // POST: DetalleCargas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var cliente = await _context.Cliente.SingleOrDefaultAsync(m => m.Id == id);
-            _context.Cliente.Remove(cliente);
+            var detalleCarga = await _context.DetalleCarga.SingleOrDefaultAsync(m => m.Id == id);
+            _context.DetalleCarga.Remove(detalleCarga);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ClienteExists(int id)
+        private bool DetalleCargaExists(int id)
         {
-            return _context.Cliente.Any(e => e.Id == id);
+            return _context.DetalleCarga.Any(e => e.Id == id);
         }
     }
 }

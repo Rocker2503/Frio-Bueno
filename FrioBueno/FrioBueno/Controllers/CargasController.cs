@@ -19,30 +19,11 @@ namespace FrioBueno.Controllers
         }
 
         // GET: Cargas
-        public async Task<IActionResult> Index(int id)
-        {
-            
+        public async Task<IActionResult> Index()
+        {            
             return View(await _context.Carga.ToListAsync());
         }
-
-        // GET: Cargas/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var carga = await _context.Carga
-                .SingleOrDefaultAsync(m => m.Id == id);
-            if (carga == null)
-            {
-                return NotFound();
-            }
-
-            return View(carga);
-        }
-
+       
         // GET: Cargas/Create
         public IActionResult Create()
         {

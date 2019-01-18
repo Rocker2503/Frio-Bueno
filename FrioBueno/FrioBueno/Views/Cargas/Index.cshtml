@@ -1,17 +1,17 @@
 ﻿@model IEnumerable<FrioBueno.Models.Carga>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Carga";
     var idCliente = ViewContext.RouteData.Values["Id"];
     int id = Convert.ToInt32(idCliente);
 }
 
-<h2>Index</h2>
+<h2>Carga</h2>
 
 <p>
     <!--<a asp-action="Create">Create New</a> -->
 </p>
-<table class="table">
+<table class="table table-striped table-responsive">
     <thead>
         <tr>
             <th>
@@ -34,9 +34,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.KgNeto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdCliente)
             </th>
             <th></th>
         </tr>
@@ -70,12 +67,10 @@
                         @Html.DisplayFor(modelItem => item.KgNeto)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.IdCliente)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a> |
+                        <a asp-action="Create" asp-controller="DetalleCargas" asp-route-id="@item.Id"> Agregar </a> |
+                        <a asp-action="Index" asp-controller="DetalleCargas" asp-route-id="@item.Id"> Ver </a>
                     </td>
                 </tr>
             }
@@ -85,5 +80,7 @@
 
 @if (id == 0)
 {
-    <script> window.location.href='@Url.Action("Index", "Clientes")'; </script>
+    <script>
+        window.location.href = '@Url.Action( "Index","Clientes")'; 
+    </script>
 }
