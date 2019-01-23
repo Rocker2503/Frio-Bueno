@@ -1,0 +1,64 @@
+﻿@model FrioBueno.Models.Carga
+
+@{
+    ViewData["Title"] = "Crear";
+    var idCliente = ViewContext.RouteData.Values["Id"];
+    int id = Convert.ToInt32(idCliente);
+}
+
+<h2>Ingresar Datos de la Carga</h2>
+
+<hr />
+<div class="container">
+    <div class="col-md-6 col-md-offset-3">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Producto" class="control-label"></label>
+                <input asp-for="Producto" class="form-control" />
+                <span asp-validation-for="Producto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoProducto" class="control-label"></label>
+                <input asp-for="TipoProducto" class="form-control" />
+                <span asp-validation-for="TipoProducto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnidadSoportante" class="control-label"></label>
+                <input asp-for="UnidadSoportante" class="form-control" />
+                <span asp-validation-for="UnidadSoportante" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CantidadUS" class="control-label"></label>
+                <input asp-for="CantidadUS" class="form-control" />
+                <span asp-validation-for="CantidadUS" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Envase" class="control-label"></label>
+                <input asp-for="Envase" class="form-control" />
+                <span asp-validation-for="Envase" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KgNeto" class="control-label"></label>
+                <input asp-for="KgNeto" class="form-control" />
+                <span asp-validation-for="KgNeto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdCliente" class="control-label"></label>
+                <input asp-for="IdCliente" value="@id" class="form-control" readonly />
+                <span asp-validation-for="IdCliente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Cargas" asp-action="Index" asp-route-id="@id">Volver</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

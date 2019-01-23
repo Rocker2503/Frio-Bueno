@@ -1,0 +1,78 @@
+﻿@model IEnumerable<FrioBueno.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Clientes";
+}
+
+<h2>Clientes</h2>
+
+<p>
+    <a asp-action="Create">Crear Cliente</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NumGuia)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Patente)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Transporte)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Conductor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RutConductor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fecha)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PesoGuia)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumGuia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Patente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Transporte)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Conductor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RutConductor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PesoGuia)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a> |
+                <a asp-action="Create" asp-controller="Cargas" asp-route-id="@item.Id"> Agregar Carga </a> |
+                <a asp-action="Index" asp-controller="Cargas" asp-route-id="@item.Id"> Ver Carga </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

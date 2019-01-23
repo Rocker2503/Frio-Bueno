@@ -2,19 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace FrioBueno.Models
 {
     public class Despacho
     {
-        private int Id { get; set; }
-        private int IdOrdenDespacho { get; set; }
-        private int IdCliente { get; set; }
-        private string Nombre { get; set; }
-        private int NumeroGuia { get; set; }
-        private string Fecha { get; set; }
+        public int Id { get; set; }
+        public int IdOrdenDespacho { get; set; }
+        public int IdCliente { get; set; }
+        public string Nombre { get; set; }
+        public int NumeroGuia { get; set; }
 
-        public Despacho(int id, int idOrdenDespacho, int idCliente, string nombre, int numGuia, string fecha)
+        [DataType(DataType.Date)]
+        public DateTime Fecha { get; set; }
+
+        public Despacho(int id, int idOrdenDespacho, int idCliente, string nombre, int numGuia, DateTime fecha)
         {
             this.Id = id;
             this.IdOrdenDespacho = idOrdenDespacho;

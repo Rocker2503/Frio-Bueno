@@ -2,23 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace FrioBueno.Models
 {
     public class DetalleCarga
     {
-        private int FolioInterno { get; set; }
-        private int NumeroLote { get; set; }
-        private string Producto { get; set; }
-        private string Envase { get; set; }
-        private int KgEnvase { get; set; }
-        private int FolioExterno { get; set; }
+        [Display(Name = "Folio Interno")]
+        public int Id { get; set; } //Folio Interno
 
-        public DetalleCarga(int folioInterno, int numeroLote, string producto, string envase, int kgEnvase,
+        [Display(Name = "N° Lote")]
+        public int IdCarga { get; set; } //Numero de Lote
+        public string Producto { get; set; }
+        public string Envase { get; set; }
+
+        [Display(Name = "Kg Envase")]
+        public string KgEnvase { get; set; }
+
+        [Display(Name = "Folio Externo")]
+        public int FolioExterno { get; set; }
+
+        public DetalleCarga(int folioInterno, int idCarga, string producto, string envase, string kgEnvase,
             int folioExterno)
         {
-            this.FolioInterno = folioInterno;
-            this.NumeroLote = numeroLote;
+            this.Id = folioInterno;
+            this.IdCarga = idCarga;
             this.Producto = producto;
             this.Envase = envase;
             this.KgEnvase = kgEnvase;

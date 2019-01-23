@@ -1,0 +1,54 @@
+﻿@model FrioBueno.Models.DetalleCarga
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>DetalleCarga</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="IdCarga" class="control-label"></label>
+                <input asp-for="IdCarga" class="form-control" readonly/>
+                <span asp-validation-for="IdCarga" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Producto" class="control-label"></label>
+                <input asp-for="Producto" class="form-control" />
+                <span asp-validation-for="Producto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Envase" class="control-label"></label>
+                <input asp-for="Envase" class="form-control" />
+                <span asp-validation-for="Envase" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KgEnvase" class="control-label"></label>
+                <input asp-for="KgEnvase" class="form-control" />
+                <span asp-validation-for="KgEnvase" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FolioExterno" class="control-label"></label>
+                <input asp-for="FolioExterno" class="form-control" />
+                <span asp-validation-for="FolioExterno" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
