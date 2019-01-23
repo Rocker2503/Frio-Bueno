@@ -1,0 +1,83 @@
+﻿@model IEnumerable<FrioBueno.Models.Carga>
+
+@{
+    ViewData["Title"] = "Carga";
+    var idCliente = ViewContext.RouteData.Values["Id"];
+    int id = Convert.ToInt32(idCliente);
+}
+
+<h2>Carga</h2>
+
+<table class="table table-striped table-responsive">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Producto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoProducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnidadSoportante)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CantidadUS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Envase)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KgNeto)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var item in Model)
+    {
+        if (item.IdCliente == id)
+        {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Producto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoProducto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UnidadSoportante)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CantidadUS)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Envase)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.KgNeto)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a> |
+                        <a asp-action="Create" asp-controller="DetalleCargas" asp-route-id="@item.Id"> Agregar Detalle </a> |
+                        <a asp-action="Index" asp-controller="DetalleCargas" asp-route-id="@item.Id"> Ver Detalle </a>
+                    </td>
+                </tr>
+        }
+    }
+    </tbody>
+</table>
+
+@if(id == 0)
+{
+    <script>
+        window.location.href = '@Url.Action("Index", "Clientes")';
+    </script>
+}
