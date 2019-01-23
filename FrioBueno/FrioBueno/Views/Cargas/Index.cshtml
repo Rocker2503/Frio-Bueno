@@ -8,9 +8,6 @@
 
 <h2>Carga</h2>
 
-<p>
-    <!--<a asp-action="Create">Create New</a> -->
-</p>
 <table class="table table-striped table-responsive">
     <thead>
         <tr>
@@ -40,10 +37,10 @@
     </thead>
 
     <tbody>
-        @foreach (var item in Model)
+    @foreach (var item in Model)
+    {
+        if (item.IdCliente == id)
         {
-            if (item.IdCliente.Equals(id))
-            {
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.Id)
@@ -69,18 +66,18 @@
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
                         <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a> |
-                        <a asp-action="Create" asp-controller="DetalleCargas" asp-route-id="@item.Id"> Agregar </a> |
-                        <a asp-action="Index" asp-controller="DetalleCargas" asp-route-id="@item.Id"> Ver </a>
+                        <a asp-action="Create" asp-controller="DetalleCargas" asp-route-id="@item.Id"> Agregar Detalle </a> |
+                        <a asp-action="Index" asp-controller="DetalleCargas" asp-route-id="@item.Id"> Ver Detalle </a>
                     </td>
                 </tr>
-            }
         }
+    }
     </tbody>
 </table>
 
-@if (id == 0)
+@if(id == 0)
 {
     <script>
-        window.location.href = '@Url.Action( "Index","Clientes")'; 
+        window.location.href = '@Url.Action("Index", "Clientes")';
     </script>
 }

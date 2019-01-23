@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FrioBueno.Models
 {
@@ -37,6 +38,11 @@ namespace FrioBueno.Models
         public Carga()
         {
 
+        }
+
+        public static implicit operator TempDataAttribute(Carga v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

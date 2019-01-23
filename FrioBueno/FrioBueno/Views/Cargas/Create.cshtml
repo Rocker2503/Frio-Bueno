@@ -1,17 +1,16 @@
 ﻿@model FrioBueno.Models.Carga
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Crear";
     var idCliente = ViewContext.RouteData.Values["Id"];
-
+    int id = Convert.ToInt32(idCliente);
 }
 
-<h2>Create</h2>
+<h2>Ingresar Datos de la Carga</h2>
 
-<h4>Carga</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="container">
+    <div class="col-md-6 col-md-offset-3">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -45,19 +44,19 @@
                 <span asp-validation-for="KgNeto" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IdCliente" class="control-label" ></label>
-                <input asp-for="IdCliente" value="@idCliente" class="form-control" readonly/>
+                <label asp-for="IdCliente" class="control-label"></label>
+                <input asp-for="IdCliente" value="@id" class="form-control" readonly />
                 <span asp-validation-for="IdCliente" class="text-danger"></span>
             </div>
-            <div class="form-group">                
-                <input type="submit" value="Create" class="btn btn-default"/>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-success" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index" asp-route-id="@idCliente">Back to List</a>
+    <a asp-controller="Cargas" asp-action="Index" asp-route-id="@id">Volver</a>
 </div>
 
 @section Scripts {

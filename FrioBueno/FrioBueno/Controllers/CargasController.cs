@@ -20,7 +20,7 @@ namespace FrioBueno.Controllers
 
         // GET: Cargas
         public async Task<IActionResult> Index()
-        {            
+        {
             return View(await _context.Carga.ToListAsync());
         }
        
@@ -37,11 +37,12 @@ namespace FrioBueno.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Producto,TipoProducto,UnidadSoportante,CantidadUS,Envase,KgNeto,IdCliente")] Carga carga)
         {
+            
             if (ModelState.IsValid)
             {
                 _context.Add(carga);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Clientes");
             }
             return View(carga);
         }
@@ -123,7 +124,7 @@ namespace FrioBueno.Controllers
             var carga = await _context.Carga.SingleOrDefaultAsync(m => m.Id == id);
             _context.Carga.Remove(carga);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Clientes");
         }
 
         private bool CargaExists(int id)

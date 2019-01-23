@@ -9,7 +9,7 @@
 <p>
     <a asp-action="Create">Crear Cliente</a>
 </p>
-<table class="table table-striped table-responsive">
+<table class="table table-striped">
     <thead>
         <tr>
                 <th>
@@ -68,9 +68,9 @@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a> | 
-                <a asp-action="Create" asp-controller="Cargas" asp-route-id="@item.Id"> Agregar </a>|
-                <a asp-action="Index" asp-controller="Cargas" asp-route-id="@item.Id"> Ver </a>
+                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a> |
+                <a asp-action="Create" asp-controller="Cargas" asp-route-id="@item.Id"> Agregar Carga </a> |
+                <a asp-action="Index" asp-controller="Cargas" asp-route-id="@item.Id"> Ver Carga </a>
             </td>
         </tr>
 }

@@ -1,7 +1,7 @@
 IF EXISTS(select * from sys.databases where name='FrioBuenoDB')
 DROP DATABASE FrioBuenoDB
 
-CREATE DATABASE FrioBuenoDB
+CREATE DATABASE FrioBuenoBD
 
 Create table Cliente(
 	Id int not null primary key identity,
@@ -53,10 +53,7 @@ Create table Producto(
     FolioExterno int not null,
     FolioInterno int not null,
     Nombre text not null,
-    Envase text not null,
-    Banda int not null,
-    Piso int not null,
-    Altura int not null
+    Envase text not null
 );
 
 Create table OrdenDespacho(

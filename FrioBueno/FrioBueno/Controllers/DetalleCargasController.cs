@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FrioBueno.Models;
+using System.Data.SqlClient;
 
 namespace FrioBueno.Controllers
 {
@@ -37,13 +38,22 @@ namespace FrioBueno.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdCarga,Producto,Envase,KgEnvase,FolioExterno")] DetalleCarga detalleCarga)
         {
-            if (ModelState.IsValid)
+            var carga = _context.Carga.Where(m => m.Id == detalleCarga.IdCarga).FirstOrDefault();
+            int cantidadUS = Convert.ToInt32(carga.CantidadUS);
+            
+            var detallesCarga = _context.DetalleCarga.Where(dc => dc.IdCarga == carga.Id).ToList();
+
+            int cantDetalle = detallesCarga.Capacity;
+            if(cantidadUS > cantDetalle)
             {
-                _context.Add(detalleCarga);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    _context.Add(detalleCarga);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Index", "Clientes");
+                }
             }
-            return View(detalleCarga);
+            return RedirectToAction("Index", "Clientes");
         }
 
         // GET: DetalleCargas/Edit/5
@@ -80,6 +90,27 @@ namespace FrioBueno.Controllers
                 {
                     _context.Update(detalleCarga);
                     await _context.SaveChangesAsync();
+
+                    _context.Database.ExecuteSqlCommand("DELETE FROM Producto WHERE FolioInterno = @id",
+                        new SqlParameter("@id", id));
+                    await _context.SaveChangesAsync();
+
+                    var carga = _context.Carga.Where(c => c.Id == detalleCarga.IdCarga).FirstOrDefault();
+                    int idCliente = Convert.ToInt32(carga.IdCliente);
+
+                    var cliente = _context.Cliente.Where(c => c.Id == idCliente).FirstOrDefault();
+                    int NumGuia = Convert.ToInt32(cliente.NumGuia);
+
+                    _context.Database.ExecuteSqlCommand("Insert into Producto Values(@NumGuia, @FolioExterno, @FolioInterno, @Nombre, @Envase)",
+                    new SqlParameter("NumGuia", NumGuia),
+                    new SqlParameter("FolioExterno", detalleCarga.FolioExterno),
+                    new SqlParameter("FolioInterno", detalleCarga.Id),
+                    new SqlParameter("Nombre", detalleCarga.Producto),
+                    new SqlParameter("Envase", detalleCarga.Envase)
+                    );
+
+                    await _context.SaveChangesAsync();
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -123,6 +154,11 @@ namespace FrioBueno.Controllers
             var detalleCarga = await _context.DetalleCarga.SingleOrDefaultAsync(m => m.Id == id);
             _context.DetalleCarga.Remove(detalleCarga);
             await _context.SaveChangesAsync();
+
+            _context.Database.ExecuteSqlCommand("DELETE FROM Producto WHERE FolioInterno = @id",
+                new SqlParameter("@id", id));
+            await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 
