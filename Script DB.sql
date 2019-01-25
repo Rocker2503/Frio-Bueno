@@ -56,24 +56,18 @@ Create table Producto(
     Envase text not null
 );
 
-Create table OrdenDespacho(
+Create Table ProductosParaDespacho(
     Id int not null primary key identity,
-    CantidadProductos int not null
-);
-
-Create table OrdenAlmacenado(
-    IdOrden int not null references OrdenDespacho(Id),
-    IdProducto int not null references Producto(Id),
     NumGuia int not null,
     FolioExterno int not null,
-    FolioInterno int not null
+    FolioInterno int not null,
+    Nombre text not null,
+    Envase text not null,
+    IdProducto int not null REFERENCES Producto(Id)
 );
 
-Create table Despacho(
+Create table OrdenDespacho(
     Id int not null primary key identity,
-    IdOrdenDespacho int not null references OrdenDespacho(Id),
-    IdCliente int not null references Cliente(Id),
-    Nombre text not null,
-    NumGuia int not null,
-    Fecha date not null
+    tipoDespacho text not null
 );
+
