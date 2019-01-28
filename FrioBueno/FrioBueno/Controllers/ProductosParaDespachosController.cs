@@ -25,7 +25,7 @@ namespace FrioBueno.Controllers
             return View(await _context.Producto.ToListAsync());
         }
 
-        // GET: ProductosParaDespachos/Edit/5
+        // GET: ProductosParaDespachos/AddProducto/5
         public async Task<IActionResult> AddProducto(int? id)
         {
             if (id == null)
@@ -70,6 +70,7 @@ namespace FrioBueno.Controllers
                             new SqlParameter("IdProducto", producto.Id)
                         );
                         await _context.SaveChangesAsync();
+
                     }
                     catch (DbUpdateConcurrencyException)
                     {

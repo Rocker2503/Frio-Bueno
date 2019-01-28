@@ -66,6 +66,14 @@ Create Table ProductosParaDespacho(
     IdProducto int not null REFERENCES Producto(Id)
 );
 
+Create Table LotesParaDespacho(
+    Id int not null primary key identity,
+    Nombre text not null,
+    TipoProducto text not null,
+    Envase text not null,
+    IdCarga int not null REFERENCES Carga(Id)
+);
+
 Create table OrdenDespacho(
     Id int not null primary key identity,
     tipoDespacho text not null

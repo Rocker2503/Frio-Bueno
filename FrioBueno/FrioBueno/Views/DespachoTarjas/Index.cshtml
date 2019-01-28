@@ -1,0 +1,55 @@
+﻿@model IEnumerable<FrioBueno.Models.ProductosParaDespacho>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NumGuia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FolioExterno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FolioInterno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Envase)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumGuia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FolioExterno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FolioInterno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Envase)
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.Id"> Eliminar </a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

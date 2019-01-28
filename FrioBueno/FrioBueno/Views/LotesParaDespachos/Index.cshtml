@@ -1,0 +1,53 @@
+﻿@model IEnumerable<FrioBueno.Models.Carga>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Producto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoProducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Envase)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KgNeto)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Producto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoProducto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Envase)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KgNeto)
+                </td>
+                <td>
+                    <a asp-action="AddCarga" asp-route-id="@item.Id"> Agregar Lote </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
