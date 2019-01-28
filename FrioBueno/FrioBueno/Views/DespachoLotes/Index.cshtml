@@ -1,4 +1,5 @@
-﻿@model IEnumerable<FrioBueno.Models.Carga>
+﻿@model IEnumerable<FrioBueno.Models.LotesParaDespacho>
+
 @{
     ViewData["Title"] = "Index";
 }
@@ -9,19 +10,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                @Html.DisplayNameFor(model => model.IdCarga)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Producto)
+                @Html.DisplayNameFor(model => model.Nombre)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.TipoProducto)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Envase)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.KgNeto)
             </th>
         </tr>
     </thead>
@@ -30,10 +28,10 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Id)
+                    @Html.DisplayFor(modelItem => item.IdCarga)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Producto)
+                    @Html.DisplayFor(modelItem => item.Nombre)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.TipoProducto)
@@ -42,14 +40,10 @@
                     @Html.DisplayFor(modelItem => item.Envase)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.KgNeto)
-                </td>
-                <td>
-                    <a asp-action="AddCarga" asp-route-id="@item.Id"> Agregar Lote </a>
+                    <a asp-action="Delete" asp-route-id="@item.Id"> Eliminar </a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
 
-<a asp-action="Index" asp-controller="DespachoLotes"> Lotes para Despachar </a>

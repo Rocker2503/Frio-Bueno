@@ -9,19 +9,19 @@ using FrioBueno.Models;
 
 namespace FrioBueno.Controllers
 {
-    public class DespachoTarjasController : Controller
+    public class DespachoLotesController : Controller
     {
 
         private readonly FrioBuenoContext _context;
 
-        public DespachoTarjasController(FrioBuenoContext context)
+        public DespachoLotesController(FrioBuenoContext context)
         {
             _context = context;
         }
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.ProductosParaDespacho.ToListAsync());
+            return View(await _context.LotesParaDespacho.ToListAsync());
         }
 
         public async Task<IActionResult> Delete(int? id)
@@ -30,30 +30,24 @@ namespace FrioBueno.Controllers
             {
                 return NotFound();
             }
-            var producto = await _context.ProductosParaDespacho.SingleOrDefaultAsync(m => m.Id == id);
-            if( producto == null)
+            var lote = await _context.LotesParaDespacho.SingleOrDefaultAsync(m => m.Id == id);
+            if(lote == null)
             {
                 return NotFound();
             }
-
-            return View(producto);
+            return View(lote);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            var producto = await _context.ProductosParaDespacho.SingleOrDefaultAsync(m => m.Id == id);
+            var lote = await _context.LotesParaDespacho.SingleOrDefaultAsync(m => m.Id == id);
 
-            _context.ProductosParaDespacho.Remove(producto);
+            _context.LotesParaDespacho.Remove(lote);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Index", "ProductosParaDespachos");
-        }
-
-        public bool ProductExists(int id)
-        {
-            return _context.ProductosParaDespacho.Any(m => m.Id == id);
+            return RedirectToAction("Index", "LotesParaDespachos");
         }
     }
 }
