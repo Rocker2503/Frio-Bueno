@@ -39,14 +39,6 @@ CREATE table DetalleCarga(
     FolioExterno int not null     
 );
 
-Create table ClienteDetalle(
-    Id int not null primary key identity,
-	IdCliente int not null references Cliente(Id),
-    FolioInterno int not null references DetalleCarga(Id),
-    Producto text not null,
-    Envase text not null
-);
-
 Create table Producto(
     Id int not null primary key identity,
     NumGuia int not null,
@@ -64,6 +56,8 @@ Create Table ProductosParaDespacho(
     Nombre text not null,
     Envase text not null,
     IdProducto int not null REFERENCES Producto(Id)
+    on update CASCADE
+    on delete CASCADE
 );
 
 Create Table LotesParaDespacho(
@@ -72,6 +66,8 @@ Create Table LotesParaDespacho(
     TipoProducto text not null,
     Envase text not null,
     IdCarga int not null REFERENCES Carga(Id)
+    on UPDATE CASCADE
+    on DELETE CASCADE
 );
 
 Create table OrdenDespacho(
