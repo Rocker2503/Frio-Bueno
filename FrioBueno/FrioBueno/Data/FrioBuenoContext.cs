@@ -25,5 +25,7 @@ namespace FrioBueno.Models
         public DbSet<FrioBueno.Models.ProductosParaDespacho> ProductosParaDespacho { get; set; }
 
         public DbSet<FrioBueno.Models.LotesParaDespacho> LotesParaDespacho { get; set; }
+
+        public DbSet<AsocDespachoProductos> AsocDespachoProductos { get; set; }
     }
 }

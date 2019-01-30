@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FrioBueno.Models;
+using System.Data.SqlClient;
 
 namespace FrioBueno.Controllers
 {
@@ -49,6 +50,65 @@ namespace FrioBueno.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Index", "ProductosParaDespachos");
+        }
+
+        public async Task<IActionResult> PackOff()
+        {
+            string TipoDespacho = "Despacho Tarjas"; //Despacho por producto
+            var productos = _context.ProductosParaDespacho.ToList();
+
+            int numOrden;
+            int NumGuia, FolioInterno, FolioExterno;
+            string Producto;
+
+            var ultimo = _context.AsocDespachoProductos.LastOrDefault();
+            //Solo para el primer Caso
+            if (ultimo == null)
+            {
+                numOrden = 1;
+                foreach( var producto in productos)
+                {
+                    NumGuia = Convert.ToInt32(producto.NumGuia);
+                    FolioInterno = Convert.ToInt32(producto.FolioInterno);
+                    FolioExterno = Convert.ToInt32(producto.FolioExterno);
+                    Producto = Convert.ToString(producto.Nombre);
+
+                    _context.Database.ExecuteSqlCommand("INSERT INTO AsocDespachoProductos VALUES(@NumOrden, @TipoDespacho, @NumGuia, @FolioInterno, @FolioExterno, @Producto)",
+                        new SqlParameter("NumOrden", numOrden),
+                        new SqlParameter("TipoDespacho", TipoDespacho),
+                        new SqlParameter("NumGuia", NumGuia),
+                        new SqlParameter("FolioInterno", FolioInterno),
+                        new SqlParameter("FolioExterno", FolioExterno),
+                        new SqlParameter("Producto", Producto)
+                        );
+
+                    await _context.SaveChangesAsync();
+                }
+                
+            }
+            else
+            {
+                numOrden = Convert.ToInt32(ultimo.NumOrden) + 1;
+                foreach (var producto in productos)
+                {
+                    NumGuia = Convert.ToInt32(producto.NumGuia);
+                    FolioInterno = Convert.ToInt32(producto.FolioInterno);
+                    FolioExterno = Convert.ToInt32(producto.FolioExterno);
+                    Producto = Convert.ToString(producto.Nombre);
+
+                    _context.Database.ExecuteSqlCommand("INSERT INTO AsocDespachoProductos VALUES(@NumOrden, @TipoDespacho, @NumGuia, @FolioInterno, @FolioExterno, @Producto)",
+                        new SqlParameter("NumOrden", numOrden),
+                        new SqlParameter("TipoDespacho", TipoDespacho),
+                        new SqlParameter("NumGuia", NumGuia),
+                        new SqlParameter("FolioInterno", FolioInterno),
+                        new SqlParameter("FolioExterno", FolioExterno),
+                        new SqlParameter("Producto", Producto)
+                        );
+
+                    await _context.SaveChangesAsync();
+                }
+            }
+            return View(await _context.AsocDespachoProductos.Where(m => m.NumOrden == numOrden).ToListAsync());
         }
 
         public bool ProductExists(int id)

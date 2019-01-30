@@ -1,5 +1,5 @@
-IF EXISTS(select * from sys.databases where name='FrioBuenoDB')
-DROP DATABASE FrioBuenoDB
+IF EXISTS(select * from sys.databases where name='FrioBuenoBD')
+DROP DATABASE FrioBuenoBD
 
 CREATE DATABASE FrioBuenoBD
 
@@ -70,8 +70,13 @@ Create Table LotesParaDespacho(
     on DELETE CASCADE
 );
 
-Create table OrdenDespacho(
+Create table AsocDespachoProductos(
     Id int not null primary key identity,
-    tipoDespacho text not null
+    NumOrden int not null,
+    TipoDespacho text not null,
+    NumGuia int not null,
+    FolioInterno int not null,
+    FolioExterno int not null,
+    Producto text not null
 );
 
