@@ -86,9 +86,15 @@ namespace FrioBueno.Controllers
                 }
                 
             }
-            else
+            else //Hay elementos en la tabla
             {
-                numOrden = Convert.ToInt32(ultimo.NumOrden) + 1;
+                numOrden = Convert.ToInt32(ultimo.NumOrden);
+                _context.Database.ExecuteSqlCommand("DELETE FROM AsocDespachoProductos WHERE NumOrden = @numOrden",
+                    new SqlParameter("@numOrden", numOrden)
+                    );
+
+                await _context.SaveChangesAsync();
+
                 foreach (var producto in productos)
                 {
                     NumGuia = Convert.ToInt32(producto.NumGuia);

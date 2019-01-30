@@ -55,6 +55,7 @@ namespace FrioBueno.Controllers
         {
             string TipoDespacho = "Despacho por Lote";
 
+
             int numOrden;
             int NumGuia, FolioInterno, FolioExterno;
             string NombreProducto;
@@ -95,7 +96,13 @@ namespace FrioBueno.Controllers
             }
             else
             {
-                numOrden = Convert.ToInt32(ultimo.NumOrden) + 1;
+                numOrden = Convert.ToInt32(ultimo.NumOrden);
+                _context.Database.ExecuteSqlCommand("DELETE FROM AsocDespachoProductos WHERE NumOrden = @numOrden",
+                    new SqlParameter("@numOrden", numOrden)
+                    );
+
+                await _context.SaveChangesAsync();
+
                 var productos = from LotesParaDespacho in _context.LotesParaDespacho
                                 join DetalleCarga in _context.DetalleCarga on LotesParaDespacho.IdCarga equals DetalleCarga.IdCarga
                                 join Producto in _context.Producto on DetalleCarga.Id equals Producto.FolioInterno
@@ -125,6 +132,7 @@ namespace FrioBueno.Controllers
 
                     await _context.SaveChangesAsync();
                 }
+
             }
 
             return View(await _context.AsocDespachoProductos.Where(m => m.NumOrden == numOrden).ToListAsync());
