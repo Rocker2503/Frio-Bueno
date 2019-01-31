@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Orden de Despacho";
+
 }
 
 <h2>Despacho de Tarjas</h2>
@@ -36,7 +37,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var item in Model)
+        @foreach (var item in Model)
         {
             <tr>
                 <td>
@@ -65,5 +66,7 @@
     </tbody>
 </table>
 
-<a asp-action="Confirm"> Confirmar </a> |
+
+<a asp-action="Create" asp-controller="ClienteDespachos" > Confirmar </a> |
 <a asp-action="Cancel"> Cancelar</a>
+        

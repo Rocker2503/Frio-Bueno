@@ -1,0 +1,50 @@
+﻿@model FrioBueno.Models.ClienteDespacho
+
+@{
+    ViewData["Title"] = "Datos Cliente";
+}
+
+<h2>Agregar Datos del Cliente</h2>
+
+<div class="container">
+    <div class="col-md-6 col-md-offset-3">
+        <form asp-action="Create" class="form-horizontal">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Patente" class="control-label"></label>
+                <input asp-for="Patente" class="form-control" />
+                <span asp-validation-for="Patente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaDespacho" class="control-label"></label>
+                <input asp-for="FechaDespacho" class="form-control" />
+                <span asp-validation-for="FechaDespacho" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Temperatura" class="control-label"></label>
+                <input asp-for="Temperatura" value="-18" class="form-control" />
+                <span asp-validation-for="Temperatura" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumSello" class="control-label"></label>
+                <input asp-for="NumSello" class="form-control" />
+                <span asp-validation-for="NumSello" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Despachar" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

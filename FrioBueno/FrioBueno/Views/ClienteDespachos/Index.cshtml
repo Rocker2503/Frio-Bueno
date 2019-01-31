@@ -1,0 +1,58 @@
+﻿@model IEnumerable<FrioBueno.Models.ClienteDespacho>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Despachos</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Patente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaDespacho)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Temperatura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumSello)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdOrden)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach( var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Patente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaDespacho)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Temperatura)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumSello)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdOrden)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
