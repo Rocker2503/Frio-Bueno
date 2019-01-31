@@ -12,6 +12,8 @@ Create table Cliente(
     Conductor text not null,
     RutConductor text not null,   
 	Fecha date not null,
+    Temperatura int not null,
+    NumSello int not null,
 	PesoGuia text not null 
 );
 
@@ -35,6 +37,7 @@ CREATE table DetalleCarga(
 	on delete cascade,
     Producto text not null, 
     Envase text not null,
+    CantidadEnvases int not null,
     KgEnvase text not null,
     FolioExterno int not null     
 );
@@ -45,7 +48,8 @@ Create table Producto(
     FolioExterno int not null,
     FolioInterno int not null,
     Nombre text not null,
-    Envase text not null
+    Envase text not null,
+    CantidadEnvases int not null
 );
 
 Create Table ProductosParaDespacho(
@@ -55,6 +59,7 @@ Create Table ProductosParaDespacho(
     FolioInterno int not null,
     Nombre text not null,
     Envase text not null,
+    CantidadEnvases int not null,
     IdProducto int not null REFERENCES Producto(Id)
     on update CASCADE
     on delete CASCADE
@@ -77,6 +82,7 @@ Create table AsocDespachoProductos(
     NumGuia int not null,
     FolioInterno int not null,
     FolioExterno int not null,
-    Producto text not null
+    Producto text not null,
+    CantidadEnvases int not null
 );
 

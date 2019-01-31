@@ -25,6 +25,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Envase)
                 </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CantidadEnvases)
+                </th>
             <th></th>
         </tr>
     </thead>
@@ -45,6 +48,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Envase)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CantidadEnvases)
             </td>
             <td>
                 <a asp-action="AddProducto" asp-route-id="@item.Id">Agregar Producto</a> 

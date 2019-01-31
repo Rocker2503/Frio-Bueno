@@ -35,7 +35,7 @@ namespace FrioBueno.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,NumGuia,Patente,Transporte,Conductor,RutConductor,Fecha,PesoGuia")] Cliente cliente)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,NumGuia,Patente,Transporte,Conductor,RutConductor,Fecha,Temperatura, NumSello,PesoGuia")] Cliente cliente)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +67,7 @@ namespace FrioBueno.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,NumGuia,Patente,Transporte,Conductor,RutConductor,Fecha,PesoGuia")] Cliente cliente)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,NumGuia,Patente,Transporte,Conductor,RutConductor,Fecha,Temperatura, NumSello,PesoGuia")] Cliente cliente)
         {
             if (id != cliente.Id)
             {

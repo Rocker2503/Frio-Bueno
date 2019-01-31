@@ -34,6 +34,12 @@
                     @Html.DisplayNameFor(model => model.Fecha)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.Temperatura)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NumSello)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.PesoGuia)
                 </th>
             <th></th>
@@ -62,6 +68,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Temperatura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumSello)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PesoGuia)

@@ -46,7 +46,7 @@ namespace FrioBueno.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddProducto(int id, [Bind("Id,NumGuia,FolioExterno,FolioInterno,Nombre,Envase")] Producto producto)
+        public async Task<IActionResult> AddProducto(int id, [Bind("Id,NumGuia,FolioExterno,FolioInterno,Nombre,Envase,CantidadEnvases")] Producto producto)
         {
             if (id != producto.Id)
             {
@@ -61,12 +61,13 @@ namespace FrioBueno.Controllers
                 {
                     try
                     {
-                        _context.Database.ExecuteSqlCommand("Insert into ProductosParaDespacho Values(@NumGuia, @FolioExterno, @FolioInterno, @Nombre, @Envase,@IdProducto)",
+                        _context.Database.ExecuteSqlCommand("Insert into ProductosParaDespacho Values(@NumGuia, @FolioExterno, @FolioInterno, @Nombre, @Envase, @CantidadEnvases, @IdProducto)",
                             new SqlParameter("NumGuia", producto.NumGuia),
                             new SqlParameter("FolioExterno", producto.FolioExterno),
                             new SqlParameter("FolioInterno", producto.FolioInterno),
                             new SqlParameter("Nombre", producto.Nombre),
                             new SqlParameter("Envase", producto.Envase),
+                            new SqlParameter("CantidadEnvases", producto.CantidadEnvases),
                             new SqlParameter("IdProducto", producto.Id)
                         );
                         await _context.SaveChangesAsync();

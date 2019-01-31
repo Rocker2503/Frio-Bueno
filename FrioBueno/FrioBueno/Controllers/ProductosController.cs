@@ -37,7 +37,8 @@ namespace FrioBueno.Controllers
                                FolioExterno = DetalleCarga.FolioExterno,
                                FolioInterno = DetalleCarga.Id,
                                Nombre = DetalleCarga.Producto,
-                               Envase = DetalleCarga.Envase
+                               Envase = DetalleCarga.Envase,
+                               CantidadEnvases = DetalleCarga.CantidadEnvases
                            };
 
             int NumGuia;
@@ -45,6 +46,7 @@ namespace FrioBueno.Controllers
             int FolioInterno;
             string Nombre;
             string Envase;
+            int CantidadEnvases;
 
             foreach (var prod in producto)
             {
@@ -53,24 +55,27 @@ namespace FrioBueno.Controllers
                 var folioInterno = prod.FolioInterno;
                 var nombre = prod.Nombre;
                 var envase = prod.Envase;
+                var cantidadEnvases = prod.CantidadEnvases;
 
                 NumGuia = Convert.ToInt32(numGuia);
                 FolioExterno = Convert.ToInt32(folioExterno);
                 FolioInterno = Convert.ToInt32(folioInterno);
                 Nombre = Convert.ToString(nombre);
                 Envase = Convert.ToString(envase);
+                CantidadEnvases = Convert.ToInt32(cantidadEnvases);
 
                 var pr = _context.Producto.Where(p => p.NumGuia == NumGuia && p.FolioExterno == FolioExterno &&
                     p.FolioInterno == FolioInterno).FirstOrDefault();
 
                 if (pr == null)
                 {
-                    _context.Database.ExecuteSqlCommand("Insert into Producto Values(@NumGuia, @FolioExterno, @FolioInterno, @Nombre, @Envase)",
+                    _context.Database.ExecuteSqlCommand("Insert into Producto Values(@NumGuia, @FolioExterno, @FolioInterno, @Nombre, @Envase, @CantidadEnvases)",
                     new SqlParameter("NumGuia", NumGuia),
                     new SqlParameter("FolioExterno", FolioExterno),
                     new SqlParameter("FolioInterno", FolioInterno),
                     new SqlParameter("Nombre", Nombre),
-                    new SqlParameter("Envase", Envase)
+                    new SqlParameter("Envase", Envase),
+                    new SqlParameter("CantidadEnvases", CantidadEnvases)
                     );
 
                     _context.SaveChanges();

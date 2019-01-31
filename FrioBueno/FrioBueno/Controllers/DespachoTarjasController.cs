@@ -58,7 +58,7 @@ namespace FrioBueno.Controllers
             var productos = _context.ProductosParaDespacho.ToList();
 
             int numOrden;
-            int NumGuia, FolioInterno, FolioExterno;
+            int NumGuia, FolioInterno, FolioExterno, CantidadEnvases;
             string Producto;
 
             var ultimo = _context.AsocDespachoProductos.LastOrDefault();
@@ -72,14 +72,16 @@ namespace FrioBueno.Controllers
                     FolioInterno = Convert.ToInt32(producto.FolioInterno);
                     FolioExterno = Convert.ToInt32(producto.FolioExterno);
                     Producto = Convert.ToString(producto.Nombre);
+                    CantidadEnvases = Convert.ToInt32(producto.CantidadEnvases);
 
-                    _context.Database.ExecuteSqlCommand("INSERT INTO AsocDespachoProductos VALUES(@NumOrden, @TipoDespacho, @NumGuia, @FolioInterno, @FolioExterno, @Producto)",
+                    _context.Database.ExecuteSqlCommand("INSERT INTO AsocDespachoProductos VALUES(@NumOrden, @TipoDespacho, @NumGuia, @FolioInterno, @FolioExterno, @Producto, @CantidadEnvases)",
                         new SqlParameter("NumOrden", numOrden),
                         new SqlParameter("TipoDespacho", TipoDespacho),
                         new SqlParameter("NumGuia", NumGuia),
                         new SqlParameter("FolioInterno", FolioInterno),
                         new SqlParameter("FolioExterno", FolioExterno),
-                        new SqlParameter("Producto", Producto)
+                        new SqlParameter("Producto", Producto),
+                        new SqlParameter("CantidadEnvases", CantidadEnvases)
                         );
 
                     await _context.SaveChangesAsync();
@@ -101,14 +103,16 @@ namespace FrioBueno.Controllers
                     FolioInterno = Convert.ToInt32(producto.FolioInterno);
                     FolioExterno = Convert.ToInt32(producto.FolioExterno);
                     Producto = Convert.ToString(producto.Nombre);
+                    CantidadEnvases = Convert.ToInt32(producto.CantidadEnvases);
 
-                    _context.Database.ExecuteSqlCommand("INSERT INTO AsocDespachoProductos VALUES(@NumOrden, @TipoDespacho, @NumGuia, @FolioInterno, @FolioExterno, @Producto)",
+                    _context.Database.ExecuteSqlCommand("INSERT INTO AsocDespachoProductos VALUES(@NumOrden, @TipoDespacho, @NumGuia, @FolioInterno, @FolioExterno, @Producto, @CantidadEnvases)",
                         new SqlParameter("NumOrden", numOrden),
                         new SqlParameter("TipoDespacho", TipoDespacho),
                         new SqlParameter("NumGuia", NumGuia),
                         new SqlParameter("FolioInterno", FolioInterno),
                         new SqlParameter("FolioExterno", FolioExterno),
-                        new SqlParameter("Producto", Producto)
+                        new SqlParameter("Producto", Producto),
+                        new SqlParameter("CantidadEnvases", CantidadEnvases)
                         );
 
                     await _context.SaveChangesAsync();

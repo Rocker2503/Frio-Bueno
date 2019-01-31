@@ -27,8 +27,11 @@ namespace FrioBueno.Models
 
         [Display(Name = "Producto")]
         public string Producto { get; set; }
+        
+        [Display(Name = "Cantidad Envases")]
+        public int CantidadEnvases { get; set; }
 
-        public AsocDespachoProductos(int id, int numOrden, string tipoDespacho, int numGuia, int folioInterno, int folioExterno, string producto)
+        public AsocDespachoProductos(int id, int numOrden, string tipoDespacho, int numGuia, int folioInterno, int folioExterno, string producto, int cantidadEnvases)
         {
             Id = id;
             NumOrden = numOrden;
@@ -37,6 +40,7 @@ namespace FrioBueno.Models
             FolioInterno = folioInterno;
             FolioExterno = folioExterno;
             Producto = producto;
+            CantidadEnvases = cantidadEnvases;
         }
 
         public AsocDespachoProductos()

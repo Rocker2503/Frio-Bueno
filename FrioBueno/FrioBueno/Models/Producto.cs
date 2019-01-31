@@ -24,6 +24,9 @@ namespace FrioBueno.Models
 
         public string Envase { get; set; }
 
+        [Display(Name = "Cantidad Envases")]
+        public int CantidadEnvases { get; set; }
+
         public Producto(int id, int numGuia, int folioExterno, int folioInterno, string nombre, string envase)
         {
             this.Id = id;

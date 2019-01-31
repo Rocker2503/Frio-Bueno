@@ -14,7 +14,7 @@
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <label asp-for="IdCarga" class="control-label"></label>
-                <input asp-for="IdCarga" class="form-control" readonly/>
+                <input asp-for="IdCarga" class="form-control" readonly />
                 <span asp-validation-for="IdCarga" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -26,6 +26,11 @@
                 <label asp-for="Envase" class="control-label"></label>
                 <input asp-for="Envase" class="form-control" />
                 <span asp-validation-for="Envase" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CantidadEnvases" class="control-label"></label>
+                <input asp-for="CantidadEnvases" class="form-control" />
+                <span asp-validation-for="CantidadEnvases" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="KgEnvase" class="control-label"></label>
