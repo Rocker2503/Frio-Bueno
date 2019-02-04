@@ -1,0 +1,51 @@
+﻿@model IEnumerable<FrioBueno.Models.LotesParaDespacho>
+
+@{
+    ViewData["Title"] = "Despacho por Lotes";
+}
+
+<h2>Lotes Seleccionados Para Despacho</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCarga)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoProducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Envase)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdCarga)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoProducto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Envase)
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.Id"> Eliminar </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="PackOff"> Despachar </a>
+

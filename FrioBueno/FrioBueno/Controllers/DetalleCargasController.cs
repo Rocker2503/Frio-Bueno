@@ -36,7 +36,7 @@ namespace FrioBueno.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdCarga,Producto,Envase,KgEnvase,FolioExterno")] DetalleCarga detalleCarga)
+        public async Task<IActionResult> Create([Bind("IdCarga,Producto,Envase,CantidadEnvases,KgEnvase,FolioExterno")] DetalleCarga detalleCarga)
         {
             var carga = _context.Carga.Where(m => m.Id == detalleCarga.IdCarga).FirstOrDefault();
             int cantidadUS = Convert.ToInt32(carga.CantidadUS);
@@ -77,7 +77,7 @@ namespace FrioBueno.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,IdCarga,Producto,Envase,KgEnvase,FolioExterno")] DetalleCarga detalleCarga)
+        public async Task<IActionResult> Edit(int id, [Bind("IdCarga,Producto,Envase,CantidadEnvases,KgEnvase,FolioExterno")] DetalleCarga detalleCarga)
         {
             if (id != detalleCarga.Id)
             {

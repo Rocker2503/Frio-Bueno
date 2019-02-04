@@ -1,5 +1,5 @@
-IF EXISTS(select * from sys.databases where name='FrioBuenoDB')
-DROP DATABASE FrioBuenoDB
+IF EXISTS(select * from sys.databases where name='FrioBuenoBD')
+DROP DATABASE FrioBuenoBD
 
 CREATE DATABASE FrioBuenoBD
 
@@ -12,6 +12,8 @@ Create table Cliente(
     Conductor text not null,
     RutConductor text not null,   
 	Fecha date not null,
+    Temperatura int not null,
+    NumSello int not null,
 	PesoGuia text not null 
 );
 
@@ -35,16 +37,9 @@ CREATE table DetalleCarga(
 	on delete cascade,
     Producto text not null, 
     Envase text not null,
+    CantidadEnvases int not null,
     KgEnvase text not null,
     FolioExterno int not null     
-);
-
-Create table ClienteDetalle(
-    Id int not null primary key identity,
-	IdCliente int not null references Cliente(Id),
-    FolioInterno int not null references DetalleCarga(Id),
-    Producto text not null,
-    Envase text not null
 );
 
 Create table Producto(
@@ -53,27 +48,62 @@ Create table Producto(
     FolioExterno int not null,
     FolioInterno int not null,
     Nombre text not null,
-    Envase text not null
+    Envase text not null,
+    CantidadEnvases int not null
 );
 
-Create table OrdenDespacho(
+Create Table ProductosParaDespacho(
     Id int not null primary key identity,
-    CantidadProductos int not null
-);
-
-Create table OrdenAlmacenado(
-    IdOrden int not null references OrdenDespacho(Id),
-    IdProducto int not null references Producto(Id),
     NumGuia int not null,
     FolioExterno int not null,
-    FolioInterno int not null
+    FolioInterno int not null,
+    Nombre text not null,
+    Envase text not null,
+    CantidadEnvases int not null,
+    IdProducto int not null REFERENCES Producto(Id)
+    on update CASCADE
+    on delete CASCADE
+);
+
+Create Table LotesParaDespacho(
+    Id int not null primary key identity,
+    Nombre text not null,
+    TipoProducto text not null,
+    Envase text not null,
+    IdCarga int not null REFERENCES Carga(Id)
+    on UPDATE CASCADE
+    on DELETE CASCADE
+);
+
+Create table AsocDespachoProductos(
+    Id int not null primary key identity,
+    NumOrden int not null,
+    TipoDespacho text not null,
+    NumGuia int not null,
+    FolioInterno int not null,
+    FolioExterno int not null,
+    Producto text not null,
+    CantidadEnvases int not null
+);
+
+Create table ClienteDespachos(
+    Id int not null PRIMARY KEY IDENTITY,
+    Nombre text not null,
+    Patente text not null,
+    FechaDespacho DATE not null,
+    Temperatura int not null,
+    NumSello int not null,
+    IdOrden int not null
 );
 
 Create table Despacho(
-    Id int not null primary key identity,
-    IdOrdenDespacho int not null references OrdenDespacho(Id),
-    IdCliente int not null references Cliente(Id),
-    Nombre text not null,
+    Id int not null PRIMARY KEY IDENTITY,
     NumGuia int not null,
-    Fecha date not null
+    FolioInterno int not null,
+    FolioExterno int not null,
+    NumOrden int not null,
+    Cliente text not null,
+    TipoDespacho text not null,
+    Producto text not null,
+    CantidadEnvases int not null
 );

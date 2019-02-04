@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FrioBueno.Models
 {
-    public class Producto 
+    public class ProductosParaDespacho
     {
         public int Id { get; set; }
 
@@ -27,20 +27,24 @@ namespace FrioBueno.Models
         [Display(Name = "Cantidad Envases")]
         public int CantidadEnvases { get; set; }
 
-        public Producto(int id, int numGuia, int folioExterno, int folioInterno, string nombre, string envase)
+        public int IdProducto { get; set; }
+
+        public ProductosParaDespacho(int id, int numGuia, int folioExterno, int folioInterno, string nombre, string envase, int cantidadEnvases,
+            int idProducto)
         {
-            this.Id = id;
-            this.NumGuia = numGuia;
-            this.FolioExterno = folioExterno;
-            this.FolioInterno = folioInterno;
-            this.Nombre = nombre;
-            this.Envase = envase;
+            Id = id;
+            NumGuia = numGuia;
+            FolioExterno = FolioExterno;
+            FolioInterno = FolioInterno;
+            Nombre = nombre;
+            Envase = envase;
+            CantidadEnvases = cantidadEnvases;
+            IdProducto = idProducto;
         }
 
-        public Producto()
+        public ProductosParaDespacho()
         {
 
         }
-        
     }
 }

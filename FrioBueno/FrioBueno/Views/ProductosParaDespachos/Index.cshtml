@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<FrioBueno.Models.Producto>
 
 @{
-    ViewData["Title"] = "Stock";
+    ViewData["Title"] = "Index";
 }
 
-<h2>Stock de Productos</h2>
+<h2>Tarjas Disponibles</h2>
 
 
 <table class="table table-striped">
@@ -52,7 +52,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CantidadEnvases)
             </td>
+            <td>
+                <a asp-action="AddProducto" asp-route-id="@item.Id">Agregar Producto</a> 
+
+            </td>
         </tr>
 }
     </tbody>
 </table>
+
+<a asp-action="Index" asp-controller="DespachoTarjas"> Tarjas para Despachar </a>

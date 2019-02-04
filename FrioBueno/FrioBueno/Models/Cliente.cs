@@ -23,11 +23,17 @@ namespace FrioBueno.Models
 
         [DataType(DataType.Date)]
         public DateTime Fecha { get; set; }
+
+        public int Temperatura { get; set; }
+        
+        [Display(Name = "N° Sello")]
+        public int NumSello { get; set; }
+
         [Display(Name = "Peso Guia")]
         public string PesoGuia { get; set; }
 
         public Cliente(int id, string nombre, int numGuia, string patente, string transporte, string conductor, string rutConductor,
-            DateTime fecha, string pesoGuia)
+            DateTime fecha, int temperatura,int numSello, string pesoGuia)
         {
             this.Id = id;
             this.Nombre = nombre;
@@ -36,7 +42,9 @@ namespace FrioBueno.Models
             this.Transporte = transporte;
             this.Conductor = conductor;
             this.RutConductor = rutConductor;
-            this.Fecha = fecha;           
+            this.Fecha = fecha;
+            this.Temperatura = temperatura;
+            this.NumSello = numSello;
             this.PesoGuia = pesoGuia;           
         }
 

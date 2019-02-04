@@ -14,8 +14,12 @@ namespace FrioBueno.Models
 
         [Display(Name = "N° Lote")]
         public int IdCarga { get; set; } //Numero de Lote
+
         public string Producto { get; set; }
         public string Envase { get; set; }
+
+        [Display(Name = "Cantidad Envases")]
+        public int CantidadEnvases { get; set; }
 
         [Display(Name = "Kg Envase")]
         public string KgEnvase { get; set; }
@@ -23,13 +27,14 @@ namespace FrioBueno.Models
         [Display(Name = "Folio Externo")]
         public int FolioExterno { get; set; }
 
-        public DetalleCarga(int folioInterno, int idCarga, string producto, string envase, string kgEnvase,
+        public DetalleCarga(int folioInterno, int idCarga, string producto, string envase, int cantidadEnvases, string kgEnvase,
             int folioExterno)
         {
             this.Id = folioInterno;
             this.IdCarga = idCarga;
             this.Producto = producto;
             this.Envase = envase;
+            this.CantidadEnvases = cantidadEnvases;
             this.KgEnvase = kgEnvase;
             this.FolioExterno = folioExterno;
         }
