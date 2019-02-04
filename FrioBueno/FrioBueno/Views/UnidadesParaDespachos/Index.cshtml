@@ -1,0 +1,66 @@
+﻿@model IEnumerable<FrioBueno.Models.Producto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Productos Disponibles</h2>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NumGuia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FolioExterno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FolioInterno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Envase)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CantidadEnvases)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumGuia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FolioExterno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FolioInterno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Envase)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CantidadEnvases)
+                </td>
+                <td>
+                    <a asp-action="AddUnits" asp-route-id="@item.Id">Agregar Unidades</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="ShowProducts" asp-controller="UnidadesParaDespachos"> Unidades para Despachar </a>
+

@@ -92,7 +92,7 @@ namespace FrioBueno.Controllers
 
         private bool ProductoExists(int id)
         {
-            return _context.ProductosParaDespacho.Any(e => e.Id == id);
+            return _context.Producto.Any(e => e.Id == id);
         }
     }
 }
