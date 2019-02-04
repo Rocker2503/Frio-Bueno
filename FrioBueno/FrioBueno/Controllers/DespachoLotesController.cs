@@ -53,7 +53,7 @@ namespace FrioBueno.Controllers
 
         public async Task<IActionResult> PackOff()
         {
-            string TipoDespacho = "Despacho por Lote";
+            string TipoDespacho = "Despacho Lotes";
 
 
             int numOrden;
@@ -64,7 +64,15 @@ namespace FrioBueno.Controllers
             var ultimo = _context.AsocDespachoProductos.LastOrDefault();
             if(ultimo == null)
             {
-                numOrden = 1;
+                var UltimoDespacho = _context.Despacho.LastOrDefault();
+                if (UltimoDespacho == null)
+                {
+                    numOrden = 1;
+                }
+                else
+                {
+                    numOrden = Convert.ToInt32(UltimoDespacho.NumOrden) + 1;
+                }
                 var productos = from LotesParaDespacho in _context.LotesParaDespacho
                               join DetalleCarga in _context.DetalleCarga on LotesParaDespacho.IdCarga equals DetalleCarga.IdCarga
                               join Producto in _context.Producto on DetalleCarga.Id equals Producto.FolioInterno

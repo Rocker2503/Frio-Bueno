@@ -65,7 +65,15 @@ namespace FrioBueno.Controllers
             //Solo para el primer Caso
             if (ultimo == null)
             {
-                numOrden = 1;
+                var UltimoDespacho = _context.Despacho.LastOrDefault();
+                if(UltimoDespacho == null)
+                {
+                    numOrden = 1;
+                }
+                else
+                {
+                    numOrden = Convert.ToInt32(UltimoDespacho.NumOrden) + 1; 
+                }
                 foreach( var producto in productos)
                 {
                     NumGuia = Convert.ToInt32(producto.NumGuia);

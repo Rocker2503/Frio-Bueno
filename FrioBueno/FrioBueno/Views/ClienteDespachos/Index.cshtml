@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FrioBueno.Models.ClienteDespacho>
+﻿@model IEnumerable<FrioBueno.Models.Despacho>
 
 @{
     ViewData["Title"] = "Index";
@@ -10,22 +10,28 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nombre)
+                @Html.DisplayNameFor(model => model.NumGuia)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Patente)
+                @Html.DisplayNameFor(model => model.FolioInterno)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FechaDespacho)
+                @Html.DisplayNameFor(model => model.FolioExterno)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Temperatura)
+                @Html.DisplayNameFor(model => model.NumOrden)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NumSello)
+                @Html.DisplayNameFor(model => model.Cliente)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdOrden)
+                @Html.DisplayNameFor(model => model.TipoDespacho)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Producto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CantidadEnvases)
             </th>
         </tr>
     </thead>
@@ -34,22 +40,28 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Nombre)
+                    @Html.DisplayFor(modelItem => item.NumGuia)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Patente)
+                    @Html.DisplayFor(modelItem => item.FolioInterno)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FechaDespacho)
+                    @Html.DisplayFor(modelItem => item.FolioExterno)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Temperatura)
+                    @Html.DisplayFor(modelItem => item.NumOrden)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NumSello)
+                    @Html.DisplayFor(modelItem => item.Cliente)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.IdOrden)
+                    @Html.DisplayFor(modelItem => item.TipoDespacho)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Producto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CantidadEnvases)
                 </td>
             </tr>
         }

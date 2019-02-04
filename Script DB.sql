@@ -86,3 +86,24 @@ Create table AsocDespachoProductos(
     CantidadEnvases int not null
 );
 
+Create table ClienteDespachos(
+    Id int not null PRIMARY KEY IDENTITY,
+    Nombre text not null,
+    Patente text not null,
+    FechaDespacho DATE not null,
+    Temperatura int not null,
+    NumSello int not null,
+    IdOrden int not null
+);
+
+Create table Despacho(
+    Id int not null PRIMARY KEY IDENTITY,
+    NumGuia int not null,
+    FolioInterno int not null,
+    FolioExterno int not null,
+    NumOrden int not null,
+    Cliente text not null,
+    TipoDespacho text not null,
+    Producto text not null,
+    CantidadEnvases int not null
+);

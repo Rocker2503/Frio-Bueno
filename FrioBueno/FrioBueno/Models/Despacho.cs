@@ -9,28 +9,45 @@ namespace FrioBueno.Models
     public class Despacho
     {
         public int Id { get; set; }
-        public int IdOrdenDespacho { get; set; }
-        public int IdCliente { get; set; }
-        public string Nombre { get; set; }
-        public int NumeroGuia { get; set; }
 
-        [DataType(DataType.Date)]
-        public DateTime Fecha { get; set; }
+        [Display(Name = "N° Guia")]
+        public int NumGuia { get; set; }
 
-        public Despacho(int id, int idOrdenDespacho, int idCliente, string nombre, int numGuia, DateTime fecha)
+        [Display(Name = "Folio Interno")]
+        public int FolioInterno { get; set; }
+
+        [Display(Name = "Folio Externo")]
+        public int FolioExterno { get; set; }
+
+        [Display(Name = "N° Orden")]
+        public int NumOrden { get; set; }
+
+        public string Cliente { get; set; }
+
+        [Display(Name = "Tipo Despacho")]
+        public string TipoDespacho { get; set; }
+
+        public string Producto { get; set; }
+
+        [Display(Name = "Cantidad Envases")]
+        public int CantidadEnvases { get; set; }
+
+        public Despacho(int id, int numGuia, int folioInterno, int folioExterno, int numOrden, string cliente, string tipoDespacho, string producto, int cantidadEnvases)
         {
-            this.Id = id;
-            this.IdOrdenDespacho = idOrdenDespacho;
-            this.IdCliente = idCliente;
-            this.Nombre = nombre;
-            this.NumeroGuia = numGuia;
-            this.Fecha = fecha;
+            Id = id;
+            NumGuia = numGuia;
+            FolioInterno = folioInterno;
+            FolioExterno = folioExterno;
+            NumOrden = numOrden;
+            Cliente = cliente;
+            TipoDespacho = tipoDespacho;
+            Producto = producto;
+            CantidadEnvases = cantidadEnvases;
         }
 
         public Despacho()
         {
 
         }
-
     }
 }

@@ -29,5 +29,7 @@ namespace FrioBueno.Models
         public DbSet<AsocDespachoProductos> AsocDespachoProductos { get; set; }
         
         public DbSet<ClienteDespacho> ClienteDespachos { get; set; }
+
+        public DbSet<Despacho> Despacho { get; set; }
     }
 }
