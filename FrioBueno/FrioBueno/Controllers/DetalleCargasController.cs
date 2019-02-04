@@ -77,7 +77,7 @@ namespace FrioBueno.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdCarga,Producto,Envase,CantidadEnvases,KgEnvase,FolioExterno")] DetalleCarga detalleCarga)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,IdCarga,Producto,Envase,CantidadEnvases,KgEnvase,FolioExterno")] DetalleCarga detalleCarga)
         {
             if (id != detalleCarga.Id)
             {
@@ -88,29 +88,18 @@ namespace FrioBueno.Controllers
             {
                 try
                 {
+                    var producto = _context.Producto.SingleOrDefault(m => m.FolioInterno == detalleCarga.Id);
+                    producto.FolioInterno = detalleCarga.Id;
+                    producto.Nombre = detalleCarga.Producto;
+                    producto.Envase = detalleCarga.Envase;
+                    producto.CantidadEnvases = detalleCarga.CantidadEnvases;
+                    producto.FolioExterno = detalleCarga.FolioExterno;
+
                     _context.Update(detalleCarga);
                     await _context.SaveChangesAsync();
 
-                    _context.Database.ExecuteSqlCommand("DELETE FROM Producto WHERE FolioInterno = @id",
-                        new SqlParameter("@id", id));
+                    _context.Update(producto);
                     await _context.SaveChangesAsync();
-
-                    var carga = _context.Carga.Where(c => c.Id == detalleCarga.IdCarga).FirstOrDefault();
-                    int idCliente = Convert.ToInt32(carga.IdCliente);
-
-                    var cliente = _context.Cliente.Where(c => c.Id == idCliente).FirstOrDefault();
-                    int NumGuia = Convert.ToInt32(cliente.NumGuia);
-
-                    _context.Database.ExecuteSqlCommand("Insert into Producto Values(@NumGuia, @FolioExterno, @FolioInterno, @Nombre, @Envase)",
-                    new SqlParameter("NumGuia", NumGuia),
-                    new SqlParameter("FolioExterno", detalleCarga.FolioExterno),
-                    new SqlParameter("FolioInterno", detalleCarga.Id),
-                    new SqlParameter("Nombre", detalleCarga.Producto),
-                    new SqlParameter("Envase", detalleCarga.Envase)
-                    );
-
-                    await _context.SaveChangesAsync();
-
                 }
                 catch (DbUpdateConcurrencyException)
                 {

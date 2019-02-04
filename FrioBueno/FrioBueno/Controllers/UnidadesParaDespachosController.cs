@@ -99,6 +99,33 @@ namespace FrioBueno.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var producto = await _context.ProductosParaDespacho.SingleOrDefaultAsync(m => m.Id == id);
+            if (producto == null)
+            {
+                return NotFound();
+            }
+
+            return View(producto);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var producto = await _context.ProductosParaDespacho.SingleOrDefaultAsync(m => m.Id == id);
+
+            _context.ProductosParaDespacho.Remove(producto);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(ShowProducts));
+        }
+
         public async Task<IActionResult> PackOff()
         {
             string TipoDespacho = "Despacho Unidades"; //Despacho por producto
@@ -174,6 +201,101 @@ namespace FrioBueno.Controllers
                 }
             }
             return View(await _context.AsocDespachoProductos.Where(m => m.NumOrden == numOrden).ToListAsync());
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id, Nombre, Patente, FechaDespacho, Temperatura, NumSello, IdOrden")] ClienteDespacho cliente)
+        {
+            var orden = _context.AsocDespachoProductos.LastOrDefault();
+            cliente.IdOrden = orden.NumOrden;
+
+            if (ModelState.IsValid)
+            {
+                _context.ClienteDespachos.Add(cliente);
+                await _context.SaveChangesAsync();
+
+                var despachos = from AsocDespachoProductos in _context.AsocDespachoProductos
+                                join ClienteDespacho in _context.ClienteDespachos on AsocDespachoProductos.NumOrden equals ClienteDespacho.IdOrden
+                                select new
+                                {
+                                    NumGuia = AsocDespachoProductos.NumGuia,
+                                    FolioInterno = AsocDespachoProductos.FolioInterno,
+                                    FolioExterno = AsocDespachoProductos.FolioExterno,
+                                    NumOrden = AsocDespachoProductos.NumOrden,
+                                    Cliente = ClienteDespacho.Nombre,
+                                    TipoDespacho = AsocDespachoProductos.TipoDespacho,
+                                    Producto = AsocDespachoProductos.Producto,
+                                    CantidadEnvases = AsocDespachoProductos.CantidadEnvases
+                                };
+
+
+                foreach (var despacho in despachos.ToList())
+                {
+                    int NumGuia = Convert.ToInt32(despacho.NumGuia);
+                    int FolioInterno = Convert.ToInt32(despacho.FolioInterno);
+                    int FolioExterno = Convert.ToInt32(despacho.FolioExterno);
+                    int NumOrden = Convert.ToInt32(despacho.NumOrden);
+                    string Cliente = Convert.ToString(despacho.Cliente);
+                    string TipoDespacho = Convert.ToString(despacho.TipoDespacho);
+                    string Producto = Convert.ToString(despacho.Producto);
+                    int CantidadEnvases = Convert.ToInt32(despacho.CantidadEnvases);
+
+                    var prod = _context.Producto.FirstOrDefault(m => m.FolioInterno == FolioInterno);
+                    var detalle = _context.DetalleCarga.FirstOrDefault(m => m.Id == FolioInterno);
+                    int resto = Convert.ToInt32(prod.CantidadEnvases) - CantidadEnvases;
+
+                    if (resto > 0)
+                    {
+                        prod.CantidadEnvases = resto;
+                        detalle.CantidadEnvases = resto;
+
+                        _context.Producto.Update(prod);
+                        _context.DetalleCarga.Update(detalle);
+
+                        await _context.SaveChangesAsync();
+                    }
+                    else
+                    {
+                        _context.Producto.Remove(prod);
+                        _context.DetalleCarga.Remove(detalle);
+
+                        await _context.SaveChangesAsync();
+                    }
+
+                    _context.Database.ExecuteSqlCommand("INSERT INTO Despacho VALUES (@NumGuia, @FolioInterno, @FolioExterno, @NumOrden, @Cliente," +
+                        "@TipoDespacho, @Producto, @CantidadEnvases)",
+                        new SqlParameter("NumGuia", NumGuia),
+                        new SqlParameter("FolioInterno", FolioInterno),
+                        new SqlParameter("FolioExterno", FolioExterno),
+                        new SqlParameter("NumOrden", NumOrden),
+                        new SqlParameter("Cliente", Cliente),
+                        new SqlParameter("TipoDespacho", TipoDespacho),
+                        new SqlParameter("Producto", Producto),
+                        new SqlParameter("CantidadEnvases", CantidadEnvases)
+                        );
+
+                    if(resto > 0)
+                    {
+
+                    }
+                }
+                var productos = _context.AsocDespachoProductos.ToList();
+                _context.AsocDespachoProductos.RemoveRange(productos);
+                await _context.SaveChangesAsync();
+
+                var clientes = _context.ClienteDespachos.ToList();
+                _context.ClienteDespachos.RemoveRange(clientes);
+                await _context.SaveChangesAsync();
+
+            }
+
+            return RedirectToAction(nameof(Index));
         }
 
         private bool ProductoExists(int id)

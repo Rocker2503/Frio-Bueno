@@ -35,11 +35,16 @@ namespace FrioBueno.Controllers
         {
             var orden = _context.AsocDespachoProductos.LastOrDefault();
             bool isDespachoLotes = false;
-            if(orden.TipoDespacho.ToString().Equals("Despacho Lotes"))
+            bool isDespachoUnidades = false;
+
+            if (orden.TipoDespacho.ToString().Equals("Despacho Lotes"))
             {
                 isDespachoLotes = true;
             }
-
+            if(orden.TipoDespacho.ToString().Equals("Despacho Unidades"))
+            {
+                isDespachoUnidades = true;
+            }
             cliente.IdOrden = orden.NumOrden;
 
             if(ModelState.IsValid)
@@ -85,23 +90,23 @@ namespace FrioBueno.Controllers
                         new SqlParameter("CantidadEnvases", CantidadEnvases)
                         );
 
-                    await _context.SaveChangesAsync();
 
                     _context.Database.ExecuteSqlCommand("Delete from ProductosParaDespacho Where FolioInterno = @FolioInterno",
                         new SqlParameter("FolioInterno", FolioInterno)
                         );
-                    await _context.SaveChangesAsync();
 
-                    _context.Database.ExecuteSqlCommand("Delete from Producto Where FolioInterno = @FolioInterno",
-                        new SqlParameter("FolioInterno", FolioInterno)
-                        );
-                    await _context.SaveChangesAsync();
 
-                    _context.Database.ExecuteSqlCommand("Delete from DetalleCarga Where Id = @FolioInterno",
-                        new SqlParameter("FolioInterno", FolioInterno)
-                        );
-                    await _context.SaveChangesAsync();
+                        _context.Database.ExecuteSqlCommand("Delete from Producto Where FolioInterno = @FolioInterno",
+                            new SqlParameter("FolioInterno", FolioInterno)
+                            );
+
+                        _context.Database.ExecuteSqlCommand("Delete from DetalleCarga Where Id = @FolioInterno",
+                            new SqlParameter("FolioInterno", FolioInterno)
+                            );
                 }
+
+                await _context.SaveChangesAsync();
+                
 
                 if(isDespachoLotes)
                 {
