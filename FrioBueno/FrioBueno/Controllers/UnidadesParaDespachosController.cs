@@ -248,6 +248,8 @@ namespace FrioBueno.Controllers
 
                     var prod = _context.Producto.FirstOrDefault(m => m.FolioInterno == FolioInterno);
                     var detalle = _context.DetalleCarga.FirstOrDefault(m => m.Id == FolioInterno);
+                    int idCarga = Convert.ToInt32(detalle.IdCarga);
+
                     int resto = Convert.ToInt32(prod.CantidadEnvases) - CantidadEnvases;
 
                     if (resto > 0)
@@ -266,6 +268,14 @@ namespace FrioBueno.Controllers
                         _context.DetalleCarga.Remove(detalle);
 
                         await _context.SaveChangesAsync();
+
+                        var detalles = _context.DetalleCarga.Where(m => m.IdCarga == idCarga).ToList();
+                        var carga = _context.Carga.FirstOrDefault(m => m.Id == idCarga);
+                        if(detalles.Count() == 0)
+                        {
+                            _context.Carga.Remove(carga);
+                            await _context.SaveChangesAsync();
+                        }
                     }
 
                     _context.Database.ExecuteSqlCommand("INSERT INTO Despacho VALUES (@NumGuia, @FolioInterno, @FolioExterno, @NumOrden, @Cliente," +
@@ -280,11 +290,11 @@ namespace FrioBueno.Controllers
                         new SqlParameter("CantidadEnvases", CantidadEnvases)
                         );
 
-                    if(resto > 0)
-                    {
-
-                    }
+                    _context.Database.ExecuteSqlCommand("Delete from ProductosParaDespacho Where FolioInterno = @FolioInterno",
+                        new SqlParameter("FolioInterno", FolioInterno)
+                        );
                 }
+ 
                 var productos = _context.AsocDespachoProductos.ToList();
                 _context.AsocDespachoProductos.RemoveRange(productos);
                 await _context.SaveChangesAsync();

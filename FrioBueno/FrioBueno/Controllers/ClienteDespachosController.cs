@@ -35,16 +35,12 @@ namespace FrioBueno.Controllers
         {
             var orden = _context.AsocDespachoProductos.LastOrDefault();
             bool isDespachoLotes = false;
-            bool isDespachoUnidades = false;
 
             if (orden.TipoDespacho.ToString().Equals("Despacho Lotes"))
             {
                 isDespachoLotes = true;
             }
-            if(orden.TipoDespacho.ToString().Equals("Despacho Unidades"))
-            {
-                isDespachoUnidades = true;
-            }
+
             cliente.IdOrden = orden.NumOrden;
 
             if(ModelState.IsValid)
@@ -67,7 +63,7 @@ namespace FrioBueno.Controllers
                                 };
 
 
-                foreach(var despacho in despachos)
+                foreach(var despacho in despachos.ToList())
                 {
                     int NumGuia = Convert.ToInt32(despacho.NumGuia);
                     int FolioInterno = Convert.ToInt32(despacho.FolioInterno);
@@ -90,24 +86,35 @@ namespace FrioBueno.Controllers
                         new SqlParameter("CantidadEnvases", CantidadEnvases)
                         );
 
+                    var detalle = _context.DetalleCarga.FirstOrDefault(m => m.Id == FolioInterno);
+                    int idCarga = Convert.ToInt32(detalle.IdCarga);
+
+                    await _context.SaveChangesAsync();
 
                     _context.Database.ExecuteSqlCommand("Delete from ProductosParaDespacho Where FolioInterno = @FolioInterno",
                         new SqlParameter("FolioInterno", FolioInterno)
                         );
 
-
-                        _context.Database.ExecuteSqlCommand("Delete from Producto Where FolioInterno = @FolioInterno",
+                    _context.Database.ExecuteSqlCommand("Delete from Producto Where FolioInterno = @FolioInterno",
                             new SqlParameter("FolioInterno", FolioInterno)
                             );
 
-                        _context.Database.ExecuteSqlCommand("Delete from DetalleCarga Where Id = @FolioInterno",
+                    _context.Database.ExecuteSqlCommand("Delete from DetalleCarga Where Id = @FolioInterno",
                             new SqlParameter("FolioInterno", FolioInterno)
                             );
+
+
+                    var detalles = _context.DetalleCarga.Where(m => m.IdCarga == idCarga).ToList();
+                    var carga = _context.Carga.FirstOrDefault(m => m.Id == idCarga);
+                    if (detalles.Count() == 0)
+                    {
+                        _context.Carga.Remove(carga);
+                        await _context.SaveChangesAsync();
+                    }
+
+                    await _context.SaveChangesAsync();
                 }
-
-                await _context.SaveChangesAsync();
                 
-
                 if(isDespachoLotes)
                 {
                     var lotes = _context.LotesParaDespacho.ToList();
