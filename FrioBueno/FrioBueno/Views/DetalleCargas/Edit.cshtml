@@ -1,7 +1,9 @@
 ﻿@model FrioBueno.Models.DetalleCarga
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar;
+    var idCarga = ViewContext.RouteData.Values["Id"];
+    int id = Convert.ToInt32(idCarga);
 }
 
 <h2>Editar Producto</h2>
@@ -50,7 +52,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" asp-route-id= "@id"> Volver a la Lista </a>
 </div>
 
 @section Scripts {

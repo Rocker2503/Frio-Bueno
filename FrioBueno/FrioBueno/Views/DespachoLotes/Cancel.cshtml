@@ -1,0 +1,68 @@
+﻿@model IEnumerable<AsocDespachoProductos>
+
+@{
+    ViewData["Title"] = "Cancelar";
+}
+
+<h2>¿Desea cancelar el despacho de los siguientes productos?</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NumOrden)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoDespacho)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumGuia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FolioInterno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FolioExterno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Producto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CantidadEnvases)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumOrden)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoDespacho)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumGuia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FolioInterno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FolioExterno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Producto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CantidadEnvases)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="DeleteAll"> Cancelar Despacho </a> |
+    <a asp-action="Index"> Volver a la Lista</a>
+</div>

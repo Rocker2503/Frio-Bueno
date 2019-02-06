@@ -2,7 +2,7 @@
 
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Agregar";
     var idCarga = ViewContext.RouteData.Values["Id"];
     int id = Convert.ToInt32(idCarga);
 }
@@ -45,14 +45,14 @@
                 <span asp-validation-for="FolioExterno" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Agregar" class="btn btn-success" />
+                <input type="submit" value="Agregar" class="btn btn-default" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index" asp-controller="DetalleCargas" asp-route-id="@id">Volver</a>
+    <a asp-action="Index" asp-controller="DetalleCargas" asp-route-id="@id">Volver a la Lista</a>
 </div>
 
 @section Scripts {

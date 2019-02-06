@@ -152,5 +152,25 @@ namespace FrioBueno.Controllers
 
             return View(await _context.AsocDespachoProductos.Where(m => m.NumOrden == numOrden).ToListAsync());
         }
+
+        public async Task<IActionResult> Cancel()
+        {
+            return View(await _context.AsocDespachoProductos.ToListAsync());
+        }
+
+        public async Task<IActionResult> DeleteAll()
+        {
+            var productosDespachos = _context.AsocDespachoProductos.ToList();
+            _context.AsocDespachoProductos.RemoveRange(productosDespachos);
+
+            await _context.SaveChangesAsync();
+
+            var lotes = _context.LotesParaDespacho.ToList();
+            _context.LotesParaDespacho.RemoveRange(lotes);
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index", "LotesParaDespachos");
+        }
     }
 }

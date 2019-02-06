@@ -308,6 +308,26 @@ namespace FrioBueno.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public async Task<IActionResult> Cancel()
+        {
+            return View(await _context.AsocDespachoProductos.ToListAsync());
+        }
+
+        public async Task<IActionResult> DeleteAll()
+        {
+            var productosDespacho = _context.AsocDespachoProductos.ToList();
+            _context.AsocDespachoProductos.RemoveRange(productosDespacho);
+
+            await _context.SaveChangesAsync();
+
+            var productos = _context.ProductosParaDespacho.ToList();
+            _context.ProductosParaDespacho.RemoveRange(productos);
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
         private bool ProductoExists(int id)
         {
             return _context.Producto.Any(e => e.Id == id);
