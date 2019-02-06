@@ -56,3 +56,46 @@ INSERT INTO DetalleCarga (IdCarga, Producto, Envase, CantidadEnvases, KgEnvase, 
 VALUES(4, 'Arandano Esmerald Granel', 'Bins 460.7', 1, '460,7', 1068507);
 INSERT INTO DetalleCarga (IdCarga, Producto, Envase, CantidadEnvases, KgEnvase, FolioExterno)
 VALUES(5, 'Arandano Legacy Granel', 'Bins 460.7', 1, '460,7', 1068508);
+
+INSERT INTO Producto (NumGuia, FolioExterno, FolioInterno, Nombre, Envase, CantidadEnvases)
+VALUES(23250, 4, 1, 'Trutro Cuarto Pollo', 'Caja de 15 Kg', 76);
+INSERT INTO Producto (NumGuia, FolioExterno, FolioInterno, Nombre, Envase, CantidadEnvases)
+VALUES(23250, 5, 2, 'Trutro Cuarto Pollo', 'Caja de 15 Kg', 77);
+INSERT INTO Producto (NumGuia, FolioExterno, FolioInterno, Nombre, Envase, CantidadEnvases)
+VALUES(23250, 6, 3, 'Trutro Cuarto Pollo', 'Caja de 15 Kg', 77);
+INSERT INTO Producto (NumGuia, FolioExterno, FolioInterno, Nombre, Envase, CantidadEnvases)
+VALUES(23250, 7, 4, 'Trutro Cuarto Pollo', 'Caja de 15 Kg', 70);
+INSERT INTO Producto (NumGuia, FolioExterno, FolioInterno, Nombre, Envase, CantidadEnvases)
+VALUES(23250, 8, 5, 'Trutro Cuarto Pollo', 'Caja de 15 Kg', 70);
+INSERT INTO Producto (NumGuia, FolioExterno, FolioInterno, Nombre, Envase, CantidadEnvases)
+VALUES(23250, 9, 6, 'Trutro Cuarto Pollo', 'Caja de 15 Kg', 70);
+INSERT INTO Producto (NumGuia, FolioExterno, FolioInterno, Nombre, Envase, CantidadEnvases)
+VALUES(23250, 10, 7, 'Trutro Cuarto Pollo', 'Caja de 15 Kg', 70);
+INSERT INTO Producto (NumGuia, FolioExterno, FolioInterno, Nombre, Envase, CantidadEnvases)
+VALUES(23250, 11, 8, 'Trutro Cuarto Pollo', 'Caja de 15 Kg', 70);
+INSERT INTO Producto (NumGuia, FolioExterno, FolioInterno, Nombre, Envase, CantidadEnvases)
+VALUES(23250, 12, 9, 'Trutro Cuarto Pollo', 'Caja de 15 Kg', 70);
+INSERT INTO Producto (NumGuia, FolioExterno, FolioInterno, Nombre, Envase, CantidadEnvases)
+VALUES(23250, 13, 10, 'Trutro Cuarto Pollo', 'Caja de 15 Kg', 70);
+INSERT INTO Producto (NumGuia, FolioExterno, FolioInterno, Nombre, Envase, CantidadEnvases)
+VALUES(23250, 14, 11, 'Trutro Cuarto Pollo', 'Caja de 15 Kg', 70);
+INSERT INTO Producto (NumGuia, FolioExterno, FolioInterno, Nombre, Envase, CantidadEnvases)
+VALUES(23250, 15, 12, 'Trutro Cuarto Pollo', 'Caja de 15 Kg', 70);
+INSERT INTO Producto (NumGuia, FolioExterno, FolioInterno, Nombre, Envase, CantidadEnvases)
+VALUES(23250, 16, 13, 'Trutro Cuarto Pollo', 'Caja de 15 Kg', 70);
+INSERT INTO Producto (NumGuia, FolioExterno, FolioInterno, Nombre, Envase, CantidadEnvases)
+VALUES(43674, 1068501, 14, 'Arandano Brigitta Granel', 'Bins 460.7', 1);
+INSERT INTO Producto (NumGuia, FolioExterno, FolioInterno, Nombre, Envase, CantidadEnvases)
+VALUES(43674, 1068502, 15, 'Arandano Brigitta Granel', 'Bins 460.7', 1);
+INSERT INTO Producto (NumGuia, FolioExterno, FolioInterno, Nombre, Envase, CantidadEnvases)
+VALUES(43674, 1068503, 16, 'Arandano Brigitta Granel', 'Bins 460.7', 1);
+INSERT INTO Producto (NumGuia, FolioExterno, FolioInterno, Nombre, Envase, CantidadEnvases)
+VALUES(43674, 1068504, 17, 'Arandano Camellia Granel', 'Bins 460.7', 1);
+INSERT INTO Producto (NumGuia, FolioExterno, FolioInterno, Nombre, Envase, CantidadEnvases)
+VALUES(43674, 1068505, 18, 'Arandano Esmerald Granel', 'Bins 460.7', 1);
+INSERT INTO Producto (NumGuia, FolioExterno, FolioInterno, Nombre, Envase, CantidadEnvases)
+VALUES(43674, 1068506, 19, 'Arandano Esmerald Granel', 'Bins 460.7', 1);
+INSERT INTO Producto (NumGuia, FolioExterno, FolioInterno, Nombre, Envase, CantidadEnvases)
+VALUES(43674, 1068507, 20, 'Arandano Esmerald Granel', 'Bins 460.7', 1);
+INSERT INTO Producto (NumGuia, FolioExterno, FolioInterno, Nombre, Envase, CantidadEnvases)
+VALUES(43674, 1068508, 21, 'Arandano Legacy Granel', 'Bins 460.7', 1);
